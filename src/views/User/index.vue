@@ -37,7 +37,7 @@ export default {
 
   .van-image{
 
-    width: 110px;
+    width: 111px;
     height: 110px;
     margin: 0 20px;
 
