@@ -1,15 +1,11 @@
 <template>
-  <div >
-
-    <div>
-   <router-view></router-view>
-
-    </div>
-  </div>
+  <div>列表</div>
 </template>
 
 <script>
 export default {
+
+  name: 'ArTcie'
 
 }
 </script>

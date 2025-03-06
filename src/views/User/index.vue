@@ -1,15 +1,11 @@
 <template>
-  <div >
-
-    <div>
-   <router-view></router-view>
-
-    </div>
-  </div>
+  <div>个人</div>
 </template>
 
 <script>
 export default {
+
+  name: 'UsEr'
 
 }
 </script>
