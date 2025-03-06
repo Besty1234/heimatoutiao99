@@ -2,24 +2,54 @@
   <div>
     <div class="user-box">
       <van-image
-
-      src="https://img01.yzcdn.cn/vant/cat.jpeg"
+      :src="user_g.photo"
       fill
       round
      />
      <div class="left-top">
-      <h2>xxxxx</h2>
-      <span>1999-11-02</span>
+      <h2>{{ user_g.name }}</h2>
+      <span>{{ user_g.birthday }}</span>
      </div>
 
     </div>
+
+    <!-- 快速浏览 -->
+
+    <van-grid :column-num="3" :border="false">
+  <van-grid-item   icon="photo-o" text="我的作品" style="color: aqua;"/>
+  <van-grid-item   icon="photo-o" text="我的收藏" style="color: red;"/>
+  <van-grid-item   icon="photo-o" text="阅读历史" style="color: bisque;"/>
+</van-grid>
+
+<!-- 4 -->
+<van-cell-group>
+<van-cell title="编辑资料" is-link  icon="edit"/>
+<van-cell title="小哲同学" is-link icon="more-o"/>
+<van-cell title="系统设置" is-link icon="setting-o"/>
+<van-cell title="退出登录" is-link icon="info-o"/>
+</van-cell-group>
+
   </div>
 </template>
 
 <script>
+import { grxx } from '@/api/login'
 export default {
 
-  name: 'UsEr'
+  name: 'UsEr',
+  data () {
+    return {
+      user_g: []
+    }
+  },
+
+  async created () {
+    const res = await grxx()
+
+    this.user_g = res.data.data
+
+    console.log(res)
+  }
 
 }
 </script>

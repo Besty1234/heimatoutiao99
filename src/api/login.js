@@ -10,3 +10,7 @@ export const dlu = (data) => {
 //     data
 //   })
 // }
+
+export const grxx = () => {
+  return request.get('/v1_0/user/profile')
+}
