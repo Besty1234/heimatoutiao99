@@ -26,7 +26,7 @@
 <van-cell title="编辑资料" is-link  icon="edit"/>
 <van-cell title="小哲同学" is-link icon="more-o"/>
 <van-cell title="系统设置" is-link icon="setting-o"/>
-<van-cell title="退出登录" is-link icon="info-o"/>
+<van-cell title="退出登录" is-link icon="info-o" @click="deldlu"/>
 </van-cell-group>
 
   </div>
@@ -34,6 +34,7 @@
 
 <script>
 import { grxx } from '@/api/login'
+import { remtoken } from '@/utils/storage'
 export default {
 
   name: 'UsEr',
@@ -49,6 +50,23 @@ export default {
     this.user_g = res.data.data
 
     console.log(res)
+  },
+  methods: {
+    deldlu () {
+      this.$dialog.confirm({
+        message: '确认推出吗'
+      })
+
+      // 确认返回登录页，清除token
+        .then(() => {
+          remtoken()
+          this.$router.push('/login')
+        })
+        .catch(() => {
+          // on cancel
+        })
+    }
+
   }
 
 }

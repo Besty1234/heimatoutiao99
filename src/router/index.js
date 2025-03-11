@@ -63,7 +63,7 @@ const souwei = ['/login', '/ask', '/vide', '/article', '/Article']
 router.beforeEach((to, from, next) => {
   console.log(to.path)
 
-  if (store.state.login.token.tokenx) {
+  if (store.state.login.tokenx) {
     next()
   } else {
     if (souwei.includes(to.path)) {

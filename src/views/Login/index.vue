@@ -59,7 +59,7 @@ export default {
           forbidClick: true
         })
 
-        await this.$store.dispatch('logtoken', values)
+        await this.$store.dispatch('login/logtoken', values)
 
         this.$toast.success('登录成功')
 

@@ -1,8 +1,9 @@
 import Vue from 'vue'
 
-import { Cell, CellGroup, GridItem, Grid, Image as VanImage, Button, Tabbar, TabbarItem, Form, Field, NavBar, Toast } from 'vant'
+import { Cell, CellGroup, GridItem, Grid, Image as VanImage, Button, Tabbar, TabbarItem, Form, Field, NavBar, Toast, Dialog } from 'vant'
 
 Vue.use(CellGroup)
+Vue.use(Dialog)
 Vue.use(Cell)
 Vue.use(Grid)
 Vue.use(GridItem)

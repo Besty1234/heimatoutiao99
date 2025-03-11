@@ -3,20 +3,20 @@ import { dlu } from '@/api/login'
 import { settoken, getToken } from '@/utils/storage'
 
 export default {
+  namespaced: true,
   state: {
 
-    token: {
-
-      tokenx: getToken() || null
-
-    }
+    tokenx: getToken() || null
 
   },
   mutations: {
     cctoken (state, x) {
-      state.token.tokenx = x.token
-    }
+      state.tokenx = x
+    },
 
+    sly (state, xx) {
+      state.tokenx.token = xx
+    }
   },
   actions: {
     async logtoken (context, x) {
@@ -25,7 +25,7 @@ export default {
 
       context.commit('cctoken', res.data.data)
 
-      settoken(res.data.data.token)
+      settoken(res.data.data)
     }
   }
 
