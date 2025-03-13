@@ -12,6 +12,8 @@ import Register from '@/views/Register'
 import ask from '@/views/ask'
 import vide from '@/views/vide'
 
+import UserEdit from '@/views/User/UserEdit'
+
 // import Router from 'vue-router'
 
 Vue.use(VueRouter)
@@ -53,6 +55,10 @@ const router = new VueRouter({
     {
       path: '/Register',
       component: Register
+    },
+    {
+      path: '/mine/Edit',
+      component: UserEdit
     }
 
   ]

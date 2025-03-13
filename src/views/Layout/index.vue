@@ -1,11 +1,7 @@
 <template>
   <div>
 
-    <keep-alive>
-
       <router-view  > </router-view>
-
-    </keep-alive>
 
     <van-tabbar route>
   <van-tabbar-item icon="home-o" to="/Article">首页</van-tabbar-item>

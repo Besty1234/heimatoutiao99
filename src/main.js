@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 
 import '@/utils/vant'
-
+import '@/styles/const.less'
 Vue.config.productionTip = false
 
 new Vue({
