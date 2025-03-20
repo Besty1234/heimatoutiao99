@@ -8,6 +8,7 @@ body {
 .van-nav-bar .van-nav-bar__title {
   color: #fff;
 }
-.van-nav-bar .van-icon {
+.van-nav-bar .van-icon,
+.van-nav-bar__text {
   color: #fff !important;
 }

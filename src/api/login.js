@@ -19,3 +19,8 @@ export const grxx = () => {
 export const gxtp = (data) => {
   return request.patch('/v1_0/user/photo', data)
 }
+
+// 封装修改个人信息
+export const xgname = (data) => {
+  return request.patch('/v1_0/user/profile', data)
+}

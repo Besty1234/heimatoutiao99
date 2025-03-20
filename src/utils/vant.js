@@ -1,7 +1,12 @@
 import Vue from 'vue'
 
-import { Uploader, Cell, CellGroup, GridItem, Grid, Image as VanImage, Button, Tabbar, TabbarItem, Form, Field, NavBar, Toast, Dialog } from 'vant'
-
+import { PullRefresh, List, Icon, Tab, Tabs, Popup, DatetimePicker, Uploader, Cell, CellGroup, GridItem, Grid, Image as VanImage, Button, Tabbar, TabbarItem, Form, Field, NavBar, Toast, Dialog } from 'vant'
+Vue.use(PullRefresh)
+Vue.use(Icon)
+Vue.use(Tab)
+Vue.use(Tabs)
+Vue.use(Popup)
+Vue.use(DatetimePicker)
 Vue.use(Uploader)
 Vue.use(CellGroup)
 Vue.use(Dialog)
@@ -16,3 +21,4 @@ Vue.use(Button)
 Vue.use(Form)
 Vue.use(Toast)
 Vue.use(Field)
+Vue.use(List)

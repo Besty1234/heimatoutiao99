@@ -1,7 +1,10 @@
 <template>
   <div>
 
+    <keep-alive>
       <router-view  > </router-view>
+
+    </keep-alive>
 
     <van-tabbar route>
   <van-tabbar-item icon="home-o" to="/Article">首页</van-tabbar-item>
@@ -22,5 +25,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
+.van-tabbar{
+  height: 50px;
+}
 
 </style>
