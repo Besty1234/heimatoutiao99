@@ -12,7 +12,7 @@
         finished-text="没有更多了"
         @load="onLoad"
       >
-        <van-cell v-for="(v,index) in list" :key="index">
+        <van-cell v-for="(v, index) in list" :key="index">
           <!-- top -->
           <div>{{ v.title }}</div>
           <!-- 图片 -->
@@ -62,7 +62,6 @@ export default {
       xlLoading: false,
 
       xxx: '刷新成功'
-
     }
   },
   methods: {
@@ -79,10 +78,12 @@ export default {
       return dayjs(x).fromNow()
     },
 
+    // 利用传回的频道id发请求
     async onLoad () {
       const res = await newlist({
         channel_id: this.maclist,
         timestamp: this.times
+
       })
 
       // 将返回的上一次新闻赋值给最新新闻，重新发请求
@@ -129,13 +130,14 @@ export default {
 /deep/ .van-image {
   height: 120px;
 }
-.aaa{
+
+.aaa {
   width: 100%;
-  position:fixed;
+  position: fixed;
   overflow: auto;
   top: 90px;
   left: 0;
   right: 0;
-  bottom:50px;
+  bottom: 50px;
 }
 </style>
