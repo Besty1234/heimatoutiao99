@@ -12,8 +12,8 @@
 
     <!-- tab栏 用盒子包起来，做相对定位-->
     <div class="tabbox">
-      <van-tabs v-model="active">
-        <van-tab v-for="v in List" :title="v.name" :key="v.id">
+      <van-tabs v-model="active"  >
+        <van-tab v-for="v in List" :title="v.name" :key="v.id" >
           <ArTiclelist :maclist="v.id"></ArTiclelist>
         </van-tab>
       </van-tabs>
@@ -26,15 +26,18 @@
       <van-popup round closeable  v-model="hbshow" position="bottom" close-icon-position="top-left">
 
         <!-- 封装频道组件 -->
-         <PinDao :List="List" @xxll="xxl" @onadd='onadd' @hbshow="hbshow = !hbshow" @acti="active = $event"></PinDao>
+         <PinDao :List="List" :active="active" @xxll="xxl" @onadd='onadd' @hbshow="hbshow = !hbshow" @acti="active = $event" @activejianyi="active=active-$event"></PinDao>
       </van-popup>
   </div>
 </template>
 
 <script>
 import { OWNlistapi } from '@/api/OWNlistapi'
+import { dltjpd, dlscpd } from '@/api/PinDaoall'
 import ArTiclelist from './conponents/ArTiclelist.vue'
 import PinDao from './conponents/PinDao.vue'
+import { mapState } from 'vuex'
+import { hqpindao } from '@/utils/storage'
 export default {
   name: 'ArTcie',
 
@@ -42,33 +45,88 @@ export default {
     return {
       List: [],
       active: 0,
+      tabid: '',
       hbshow: false
     }
   },
   // 请求频道信息
   async created () {
-    const res = await OWNlistapi()
+    // 首获取正确数据
+    // 1判断是否登录
+    // 2没有登录看看本地存储有没有
+    // 3本地没有，将请求用户未登录数据
 
-    console.log(res)
+    // 判断token是否有
 
-    this.List = res.data.data.channels
+    if (this.tokenx) {
+      console.log('个人数据')
+
+      const res = await OWNlistapi()
+      this.List = res.data.data.channels
+    } else {
+      // 有本地请求本地
+      if (hqpindao()) {
+        console.log('本地')
+
+        const rrr = hqpindao()
+        this.List = rrr
+      } else {
+        console.log('基本')
+
+        // 没有本地存储则请求基本数据
+        const res = await OWNlistapi()
+        this.List = res.data.data.channels
+      }
+    }
   },
   components: {
     ArTiclelist,
     PinDao
   },
+  computed: {
+    ...mapState('login', ['tokenx'])
+
+  },
   methods: {
+
     // 删除频道
-    xxl (x) {
-      if (x !== 1 && x !== 0) {
-        this.List.splice(x, 1)
-      }
+
+    async xxl (x) {
+      this.List.splice(x.x, 1)
 
       console.log(x)
+
+      // 删除频道频道
+
+      if (this.tokenx) {
+        console.log('登录')
+
+        // 删除请求
+        await dlscpd(x.v)
+      } else {
+        console.log('未登录')
+      }
     },
     // 添加频道
-    onadd (x) {
+    async onadd (x) {
       this.List.push(x)
+
+      console.log('222222', x)
+
+      // 判断是否为登录状态，登录则发请求，未登录未存储本地
+
+      if (this.tokenx) {
+        console.log('登录')
+
+        await dltjpd({
+          id: x.id,
+          seq: this.List.length
+        })
+
+        console.log(this.List.length, x.id)
+      } else {
+        console.log('未登录')
+      }
     }
   }
 }
